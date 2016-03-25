@@ -1,18 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Ruchina Perera, Manura Liyanawatte, Susith Sugathapala, Nadun Ferdinando
+ * SLIIT
+ * Batch 2
+ * ST 2
+ *
  */
 package main;
 
 import dal.DBConnect;
 import java.awt.Color;
 import java.sql.*;
+import javax.swing.*;
 
-/**
- *
- * @author Ruchina
- */
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -117,6 +117,7 @@ public class Login extends javax.swing.JFrame {
         Connection con = db.connect();//DB Connection
         int rowCount = 0;
         String sql = "select * from Staff where UName = '"+ txtUName.getText()+"' and PWord = '"+txtPW.getText()+"'";
+        Staff staffObj = new Staff();
         try{
             Statement st = con.createStatement();
         
@@ -126,16 +127,21 @@ public class Login extends javax.swing.JFrame {
             // Iterate for the results row
             while (rs.next())
             {
-              rowCount++;
+                staffObj.setStaffID( rs.getString("StaffId"));
+                staffObj.setStaffName( rs.getString("Name"));
+                rowCount++;
             }
             st.close();
         }catch(Exception ex){
             System.out.println("Error: " + ex);
         }
         if(rowCount > 0){
-            System.out.println("Success");
+            Home hmObj = new Home(staffObj);
+            this.setVisible(false);
+            this.dispose();
+            hmObj.setVisible(true);
         }else{
-            System.out.println("Down");
+            JOptionPane.showMessageDialog(null, "Login Failed.", "Information", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

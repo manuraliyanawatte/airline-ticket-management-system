@@ -4,9 +4,10 @@ SLIIT Project ST2
 
 
 Developers :
-Ruchina Perera
-Manura Liyanawatte
-Nadun Ferdinando
-Susith Sugathapala
+
+Ruchina Perera,
+Manura Liyanawatte,
+Nadun Ferdinando,
+Susith Sugathapala,
 
 Language : JAVA and MySQL Database
